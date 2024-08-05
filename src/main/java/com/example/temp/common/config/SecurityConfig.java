@@ -5,7 +5,6 @@ import com.example.temp.common.exception.CustomException;
 import com.example.temp.common.filter.JwtAuthenticationFilter;
 import com.example.temp.user.service.impl.JwtTokenService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -39,8 +38,8 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests((authorizeRequests) ->
                         authorizeRequests
-                                .requestMatchers(PathRequest.toH2Console()).permitAll()
                                 .requestMatchers("/user/**").authenticated()
+                                .requestMatchers("/chatroom/**").authenticated()
                                 .anyRequest().permitAll()
                 )
                 .exceptionHandling((exceptionConfig) ->

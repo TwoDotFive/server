@@ -127,6 +127,10 @@ public class JwtTokenService {
         return true;
     }
 
+    public long getUserId(String token) {
+        return (long) extractAllClaims(token).get(IDENTIFICATION_CLAIM);
+    }
+
     private Claims extractAllClaims(String token) {
         return Jwts.parser()
                 .verifyWith(getSignInkey())
